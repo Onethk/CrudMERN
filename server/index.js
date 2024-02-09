@@ -11,10 +11,16 @@ app.use(express.json())  // passing from front to back in JSON
 
 mongoose.connect("mongodb://127.0.0.1:27017/crud")
 
+app.get('/', (req, res) => {
+    UserModel.find({})
+    .then(users => res.json(users))
+    .catch(err => res.json(err))
+})
+
 app.post("/createUser", (req, res) => {
     UserModel.create(req.body)
     .then(users => res.json(users))
-    .catch(err => res.json(err ))
+    .catch(err => res.json(err))
 })
 
 
